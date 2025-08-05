@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LinkedIn Clone
+
+This is a clone of the popular professional networking platform, LinkedIn, built with modern web technologies. It allows users to create posts, comment on posts, and like posts. User authentication is handled by Clerk, and data is stored in a MongoDB database. File uploads are managed through Azure Blob Storage.
 
 ## Getting Started
 
-First, run the development server:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+*   Node.js (v20 or later)
+*   npm
+*   A MongoDB database (local or cloud-hosted)
+*   A Clerk account for authentication
+*   An Azure account with a configured Blob Storage container
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1.  Clone the repository:
 
-## Learn More
+    ```bash
+    git clone https://github.com/your-username/linkedin-clone.git
+    cd linkedin-clone
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+2.  Install the dependencies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```bash
+    npm install
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3.  Create a `.env.local` file in the root of the project and add the following environment variables:
 
-## Deploy on Vercel
+    ```env
+    # Clerk
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+    CLERK_SECRET_KEY=
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    # MongoDB
+    MONGODB_URI=
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    # Azure Blob Storage
+    AZURE_STORAGE_ACCOUNT_NAME=
+    AZURE_STORAGE_ACCOUNT_KEY=
+    AZURE_STORAGE_CONTAINER_NAME=
+    AZURE_STORAGE_SAS_TOKEN=
+    ```
+
+4.  Run the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Features
+
+*   **User Authentication:** Sign up, sign in, and manage user sessions with Clerk.
+*   **Create Posts:** Users can create new posts with text and optional images.
+*   **Comment on Posts:** Users can add comments to posts.
+*   **Like Posts:** Users can like and unlike posts.
+*   **Real-time Updates:** The post feed is updated in real-time.
+
+## Tech Stack
+
+*   **Framework:** [Next.js](https://nextjs.org/)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **Authentication:** [Clerk](https://clerk.com/)
+*   **Database:** [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/)
+*   **File Storage:** [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **UI Components:** [shadcn/ui](https://ui.shadcn.com/)
+
+## Configuration
+
+The `next.config.ts` file is configured to allow images from `upload.wikimedia.org` and your Azure Blob Storage container. The `serverActions` body size limit is increased to 5MB to accommodate file uploads.
+
+The `tsconfig.json` file is set up with standard Next.js and TypeScript configurations, including path aliases for easier imports.
+
+## Available Scripts
+
+In the project directory, you can run:
+
+*   `npm run dev`: Runs the app in development mode.
+*   `npm run build`: Builds the app for production.
+*   `npm run start`: Starts a production server.
+*   `npm run lint`: Runs the linter.
